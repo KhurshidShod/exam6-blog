@@ -29,7 +29,7 @@ const PostsPage = () => {
   }, [page, search]);
   useEffect(() => {
     getCategories();
-    getData()
+    getData();
   }, [getData]);
   return (
     <section className={styles.allposts}>
