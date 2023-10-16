@@ -1,0 +1,38 @@
+.pagination {
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    li {
+      color: #232536;
+      background-color: transparent;
+      width: 25px;
+      height: 25px;
+      border-radius: 2px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 40px;
+      letter-spacing: -1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:first-child, &:last-child{
+        width: auto;
+      }
+      &.active{
+        background-color: #232536;
+        color: white;
+      }
+      &.disabled{
+        opacity: .5;
+      }
+    }
+  }
+}
