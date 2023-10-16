@@ -1,8 +1,8 @@
 import styles from "./Pagination.module.scss";
 
-const Pagination = ({ total, setPage, page, limit }) => {
+const Pagination = ({ total, setPage, page, limit, top }) => {
   const goToTop = () => {
-    window.scrollTo({top: 350, behavior: 'smooth'})
+    window.scrollTo({top, behavior: 'smooth'})
   };
   return (
     <div className={styles.pagination}>

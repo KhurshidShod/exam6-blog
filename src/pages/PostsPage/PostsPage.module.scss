@@ -4,7 +4,7 @@
   padding-bottom: 3rem;
   &__wrapper {
     width: 100%;
-    h1 {
+    &_header {
       width: 100%;
       color: #232536;
       font-size: 48px;
@@ -45,7 +45,13 @@
       }
     }
     &_cards{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         padding-top: 2rem;
+        gap: 2rem;
+        padding-bottom: 2rem;
     }
   }
 }

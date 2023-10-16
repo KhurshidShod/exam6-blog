@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CategoryCard = ({ id, image, name, desc }) => {
   return (
     <Link to={`/${id}`} className={styles.card}>
-      <img src={image.includes("http") ? image : Img} alt="" />
+      <img src={`https://ap-blog-backend.up.railway.app/upload/${image}.jpg`} alt="" />
       <h1>{name}</h1>
       <p>{desc}</p>
     </Link>

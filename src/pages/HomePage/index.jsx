@@ -5,15 +5,28 @@ import PopularBlogCard from "../../components/popularblogcard";
 import request from "../../server/request";
 import CategoryCard from "../../components/categorycard";
 import Slider from "react-slick";
+import { months } from "../../utils/mothes";
+import img from '../../assets/images/homehero.png'
 
 const HomePage = () => {
   const [popularBlogs, setPopularBlogs] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [heroData, setHeroData] = useState(null);
 
   const getPopularPosts = async () => {
     await request
       .get("post/lastones")
-      .then((res) => setPopularBlogs(res.data))
+      .then((res) => {
+        setPopularBlogs(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  const getHeroData = async () => {
+    await request
+      .get("post/lastone")
+      .then((res) => {
+        setHeroData(res.data)
+      })
       .catch((err) => console.log(err));
   };
   const getCategories = async () => {
@@ -25,7 +38,9 @@ const HomePage = () => {
   useEffect(() => {
     getPopularPosts();
     getCategories();
+    getHeroData();
   }, []);
+  console.log(popularBlogs)
 
   const settings = {
     autoplay: true,
@@ -69,19 +84,18 @@ const HomePage = () => {
         <div className={styles.home__overlay}>
           <div className="container">
             <div className={styles.home__wrapper}>
+              <img src={heroData?.photo.name.includes('http') ? heroData?.photo.name : img} alt="" />
               <h4>
-                Posted on <b>startup</b>
+                Posted on <b>{heroData?.category.name}</b>
               </h4>
-              <h1>Step-by-step guide to choosing great font pairs</h1>
+              <h1>{heroData?.title}</h1>
               <h5>
-                By <span>James West</span> | May 23, 2022{" "}
+                By <span>{heroData?.user.username}</span> | {months[new Date(heroData?.createdAt).getMonth()]} {new Date(heroData?.createdAt).getDate()}, {new Date(heroData?.createdAt).getFullYear()}
               </h5>
               <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident.
+                {heroData?.description}
               </p>
-              <Link to="/aboutus">
+              <Link to={`post/${heroData?._id}`}>
                 <button>Read More</button>
               </Link>
             </div>
@@ -98,7 +112,7 @@ const HomePage = () => {
                   <PopularBlogCard
                     key={blog._id}
                     id={blog._id}
-                    image={blog.photo.name}
+                    image={blog.photo._id}
                     title={blog.title}
                     poster={blog.user.username}
                     date={blog.createdAt}
@@ -120,7 +134,7 @@ const HomePage = () => {
                   <CategoryCard
                     key={cat._id}
                     id={cat._id}
-                    image={cat.photo.name}
+                    image={cat.photo._id}
                     name={cat.name}
                     desc={cat.description}
                   />

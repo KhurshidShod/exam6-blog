@@ -15,7 +15,7 @@ const CategoryPage = () => {
   const LIMIT = 4;
 
   const getPosts = useCallback(async () => {
-    request
+    await request
       .get("post", {
         params: { category: categoryName, search, limit: LIMIT, page },
       })
@@ -28,7 +28,7 @@ const CategoryPage = () => {
   }, [categoryName, search, page]);
 
   const getCategory = useCallback(async () => {
-    request
+    await request
       .get(`category/${categoryName}`)
       .then((res) => setCategory(res.data))
       .catch((err) => console.log(err));
@@ -60,7 +60,7 @@ const CategoryPage = () => {
                 key={post._id}
                 title={post.title}
                 description={post.description}
-                image={post.photo.name}
+                image={post.photo._id}
               />
             ))}
           </div>
@@ -69,6 +69,7 @@ const CategoryPage = () => {
             page={page}
             total={pagination && pagination.total}
             limit={LIMIT}
+            top={350}
           />
         </div>
       </div>

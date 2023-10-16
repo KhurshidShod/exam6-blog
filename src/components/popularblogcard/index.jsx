@@ -2,32 +2,23 @@ import styles from "./PopularBlogCard.module.scss";
 import Img from "../../assets/images/card.png";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { months } from "../../utils/mothes";
 
 const PopularBlogCard = ({ id, image, title, poster, date, desc }) => {
-    const navigate = useNavigate()
-  const moths = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-    "Jan",
-  ];
+  const navigate = useNavigate();
+
   return (
     <div className={styles.card} onClick={() => navigate(`/post/${id}`)}>
       <div className={styles.card__image}>
-        <img src={image.includes("http") ? image : Img} alt="" />
+        <img
+          src={`https://ap-blog-backend.up.railway.app/upload/${image}.jpg`}
+          alt=""
+        />
       </div>
       <div className={styles.card__content}>
         <h5>
           By <span>{poster}</span> |{" "}
-          {`${moths[new Date(date).getMonth()]} ${new Date(
+          {`${months[new Date(date).getMonth()]} ${new Date(
             date
           ).getDate()},${new Date(date).getFullYear()}`}
         </h5>
