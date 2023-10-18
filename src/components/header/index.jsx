@@ -23,9 +23,14 @@ const Header = () => {
       <div className="container">
         <nav>
           <div className={styles.logo}>
-            <Link to="/">
+            {isAuth ? <Link style={{
+              fontSize: '18px',
+              color: 'white'
+            }} to="/myposts">
+              My blogs
+            </Link> : <Link to="/">
               <img src={Logo} alt="" />
-            </Link>
+            </Link>}
           </div>
           <div className={styles.right}>
             <ul
