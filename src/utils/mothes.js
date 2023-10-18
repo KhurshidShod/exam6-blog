@@ -12,3 +12,18 @@ export const months = [
   "Dec",
   "Jan",
 ];
+
+export const expendedMonths = [
+  "January",
+  "February",
+  "March",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+  "January",
+];

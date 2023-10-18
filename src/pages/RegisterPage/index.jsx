@@ -7,8 +7,12 @@ import registerSchema from "../../schema/registerSchema";
 import request from "../../server/request";
 import styles from "./RegisterPage.module.scss";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+
+  const navigate = useNavigate()
+
   const [isAuth, setIsAuth] = useContext(AuthContext);
   const [confirmPassError, setConfirmPassError] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
@@ -34,6 +38,8 @@ const RegisterPage = () => {
           .then((res) => {
             Cookies.set("token", res.data.token);
             setIsAuth(true);
+            toast.success("Registered successfully!");
+            navigate("/")
           })
           .catch((err) => toast.error(err.response.data))
           .finally(setBtnLoading(false));

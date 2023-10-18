@@ -6,12 +6,17 @@ import request from "../../server/request";
 import CategoryCard from "../../components/categorycard";
 import Slider from "react-slick";
 import { months } from "../../utils/mothes";
-import img from '../../assets/images/homehero.png'
+import img from "../../assets/images/homehero.png";
 
 const HomePage = () => {
   const [popularBlogs, setPopularBlogs] = useState(null);
   const [categories, setCategories] = useState(null);
   const [heroData, setHeroData] = useState(null);
+  const [loading, setLoading] = useState({
+    popPosts: false,
+    heroData: false,
+    catData: false,
+  });
 
   const getPopularPosts = async () => {
     await request
@@ -25,7 +30,7 @@ const HomePage = () => {
     await request
       .get("post/lastone")
       .then((res) => {
-        setHeroData(res.data)
+        setHeroData(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -40,7 +45,7 @@ const HomePage = () => {
     getCategories();
     getHeroData();
   }, []);
-  console.log(popularBlogs)
+  console.log(popularBlogs);
 
   const settings = {
     autoplay: true,
@@ -70,7 +75,7 @@ const HomePage = () => {
         },
       },
       {
-        breakpoint: 500,
+        breakpoint: 575,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -84,17 +89,25 @@ const HomePage = () => {
         <div className={styles.home__overlay}>
           <div className="container">
             <div className={styles.home__wrapper}>
-              <img src={heroData?.photo.name.includes('http') ? heroData?.photo.name : img} alt="" />
+              <img
+                src={
+                  heroData?.photo?.name.includes("http")
+                    ? heroData?.photo?.name
+                    : img
+                }
+                alt=""
+              />
               <h4>
                 Posted on <b>{heroData?.category.name}</b>
               </h4>
               <h1>{heroData?.title}</h1>
               <h5>
-                By <span>{heroData?.user.username}</span> | {months[new Date(heroData?.createdAt).getMonth()]} {new Date(heroData?.createdAt).getDate()}, {new Date(heroData?.createdAt).getFullYear()}
+                By <span>{heroData?.user.username}</span> |{" "}
+                {months[new Date(heroData?.createdAt).getMonth()]}{" "}
+                {new Date(heroData?.createdAt).getDate()},{" "}
+                {new Date(heroData?.createdAt).getFullYear()}
               </h5>
-              <p>
-                {heroData?.description}
-              </p>
+              <p>{heroData?.description}</p>
               <Link to={`post/${heroData?._id}`}>
                 <button>Read More</button>
               </Link>
@@ -110,13 +123,13 @@ const HomePage = () => {
               <Slider {...settings}>
                 {popularBlogs?.map((blog) => (
                   <PopularBlogCard
-                    key={blog._id}
-                    id={blog._id}
-                    image={blog.photo._id}
-                    title={blog.title}
-                    poster={blog.user.username}
-                    date={blog.createdAt}
-                    desc={blog.description}
+                    key={blog?._id}
+                    id={blog?._id}
+                    image={blog?.photo?._id}
+                    title={blog?.title}
+                    poster={blog?.user.username}
+                    date={blog?.createdAt}
+                    desc={blog?.description}
                   />
                 ))}
               </Slider>

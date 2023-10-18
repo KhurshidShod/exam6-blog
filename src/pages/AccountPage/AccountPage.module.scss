@@ -1,0 +1,90 @@
+.account {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 69px;
+    // .dragNdrop {
+    //   width: 100%;
+    //   max-width: 300px;
+    //   height: 300px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   flex-direction: column;
+    //   border: 1px dashed rgba(109, 110, 118, 0.5);
+    //   border-radius: 25px;
+    //   position: relative;
+    //   border-radius: 50%;
+    //   padding: 1rem;
+    //   text-align: center;
+    //   img {
+    //     width: 100%;
+    //     height: 100%;
+    //     border-radius: 50%;
+    //     position: absolute;
+    //     object-fit: cover;
+    //   }
+    // }
+    h1 {
+      color: #232536;
+      text-align: center;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 64px;
+      letter-spacing: -2px;
+      margin-bottom: 68px;
+    }
+    form {
+      width: 768px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 22px;
+      @media (max-width: 1000px) {
+        width: 650px;
+      }
+      @media (max-width: 700px) {
+        width: 500px;
+      }
+      @media (max-width: 550px) {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+        padding: 18px;
+        color: #232536;
+        font-family: "Inter";
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 28px;
+        border-radius: 2px;
+        border: 1px solid rgba(109, 110, 118, 0.5);
+        &.inpReadOnly {
+          border-color: transparent;
+          border-bottom-color: rgba(109, 110, 118, 0.5);
+        }
+      }
+      button {
+        margin-top: 74px;
+        width: 100%;
+        padding: 16px;
+        color: #232536;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+        background-color: #ffd050;
+        margin-bottom: 158px;
+        cursor: pointer;
+        &.btnReadOnly {
+          background-color: white;
+          border: 1px solid rgba(109, 110, 118, 0.5);
+        }
+      }
+    }
+  }
+}

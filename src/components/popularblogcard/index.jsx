@@ -1,8 +1,9 @@
 import styles from "./PopularBlogCard.module.scss";
-import Img from "../../assets/images/card.png";
+import Img from "../../assets/images/noPostPhoto.png";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { months } from "../../utils/mothes";
+import { onImageError } from "../../utils/ImageErrorHandle";
 
 const PopularBlogCard = ({ id, image, title, poster, date, desc }) => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const PopularBlogCard = ({ id, image, title, poster, date, desc }) => {
     <div className={styles.card} onClick={() => navigate(`/post/${id}`)}>
       <div className={styles.card__image}>
         <img
+          onError={(e) => onImageError(e, Img)}
           src={`https://ap-blog-backend.up.railway.app/upload/${image}.jpg`}
           alt=""
         />
