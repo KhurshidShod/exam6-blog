@@ -1,0 +1,70 @@
+.card {
+  width: calc(100% / 4 - 2rem);
+  min-width: 250px;
+  height: 220px;
+  padding: 2rem;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 0 auto;
+  cursor: pointer;
+  background-image: linear-gradient(
+    90deg,
+    #e1e1e15c 0px,
+    #cccccc71 40px,
+    #e1e1e15c 80px
+  );
+  background-size: 300%;
+  background-position: 100% 0;
+  animation: shimmer 1s infinite;
+  gap: 1rem;
+  &__first {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-image: linear-gradient(
+        90deg,
+        #cccccca7 0px,
+        #ccccccde 40px,
+        #cccccca7 80px
+      );
+      background-size: 300%;
+      background-position: 100% 0;
+      animation: shimmer 1s infinite;
+  }
+  &__second {
+    width: 65%;
+    height: 25px;
+    border-radius: 10px;
+    background-image: linear-gradient(
+        90deg,
+        #cccccca7 0px,
+        #ccccccde 40px,
+        #cccccca7 80px
+      );
+      background-size: 300%;
+      background-position: 100% 0;
+      animation: shimmer 1s infinite;
+  }
+  &__third {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-image: linear-gradient(
+        90deg,
+        #cccccca7 0px,
+        #ccccccde 40px,
+        #cccccca7 80px
+      );
+      background-size: 300%;
+      background-position: 100% 0;
+      animation: shimmer 1s infinite;
+  }
+}
+@keyframes shimmer {
+    to {
+      background-position: -100% 0;
+    }
+  }

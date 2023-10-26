@@ -2,23 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import request from "../../server/request";
 import Cookies from "js-cookie";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
-import { yupResolver } from "@hookform/resolvers/yup";
-import registerSchema from "../../schema/registerSchema";
+import { Upload } from "antd";
 
 import styles from "./AccountPage.module.scss";
 
 const AccountPage = () => {
   const [readOnly, setReadOnly] = useState(true);
   const [btnLoading, setBtnLoading] = useState(false);
-
-  const DynamicButton = ({ type, onclick, className }) => {
-    return (
-      <button type={type} onClick={() => onclick()} className={className}>
-        {readOnly ? "Edit" : "Save"}
-      </button>
-    );
-  };
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
 
   const {
     register,
@@ -60,9 +54,37 @@ const AccountPage = () => {
           email: res.data.email,
           birthday: res.data.birthday,
         });
+        console.log(res.data.photo);
+        setImageUrl(res?.data?.photo);
       })
       .catch((err) => console.log(err));
   }, [setValue]);
+
+  const handleChange = async (file) => {
+    const image = new FormData();
+    image.append("file", file.file.originFileObj);
+    request
+      .post("upload", image, {
+        headers: {
+          Authorization: "Bearer " + Cookies.get("token"),
+        },
+      })
+      .then((res) => {
+        request
+          .put(
+            "auth/details",
+            { photo: res.data._id },
+            {
+              headers: {
+                Authorization: "Bearer " + Cookies.get("token"),
+              },
+            }
+          )
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+    getUser();
+  };
 
   useEffect(() => {
     getUser();
@@ -75,7 +97,7 @@ const AccountPage = () => {
       if (data.passwordData.newPassword !== "") {
         request.get("auth/password", data.passwordData, {
           headers: {
-            'Authorization': "Bearer" + Cookies.get("token"),
+            Authorization: "Bearer" + Cookies.get("token"),
           },
         });
       }
@@ -90,7 +112,7 @@ const AccountPage = () => {
           toast.success("Infos changed successfully!");
         })
         .catch((err) => console.log(err))
-        .finally(setBtnLoading(true));
+        .finally(() => setBtnLoading(false));
     }
   };
   return (
@@ -98,6 +120,48 @@ const AccountPage = () => {
       <div className="container">
         <div className={styles.account__wrapper}>
           <h1>Account</h1>
+          <Upload
+            name="avatar"
+            listType="picture-card"
+            style={{
+              width: "100%",
+              height: "250px",
+              backgroundColor: "red",
+              borderRadius: "15px",
+            }}
+            className="avatar-uploader"
+            showUploadList={false}
+            action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+            onChange={handleChange}
+          >
+            {imageUrl ? (
+              <img
+                src={`https://ap-blog-backend.up.railway.app/upload/${imageUrl}.jpg`}
+                alt="avatar"
+                style={{
+                  width: "250px",
+                  height: "250px",
+                  borderRadius: "15px",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: "250px",
+                  height: "250px",
+                }}
+              >
+                {loading ? <LoadingOutlined /> : <PlusOutlined />}
+                <div
+                  style={{
+                    marginTop: 8,
+                  }}
+                >
+                  Upload
+                </div>
+              </div>
+            )}
+          </Upload>
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <input
               className={`${readOnly ? styles.inpReadOnly : null}`}
@@ -163,11 +227,27 @@ const AccountPage = () => {
               placeholder="New password"
             />
             <button
-              className={`${readOnly ? styles.btnReadOnly : null}`}
-              type={readOnly ? null : "submit"}
-              onClick={() => setReadOnly(!readOnly)}
+              className={`${(readOnly && !btnLoading) ? styles.btnReadOnly : btnLoading ? styles.btnLoading : null}`}
+              type={(readOnly && btnLoading) ? null : "submit"}
+              onClick={() => !btnLoading && setReadOnly(!readOnly)}
             >
-              {readOnly ? "Edit" : "Save"}
+              {(readOnly && !btnLoading) ? "Edit" : "Save"}
+              {btnLoading ? (
+                <div className="btn_loader">
+                  <div className="bar1"></div>
+                  <div className="bar2"></div>
+                  <div className="bar3"></div>
+                  <div className="bar4"></div>
+                  <div className="bar5"></div>
+                  <div className="bar6"></div>
+                  <div className="bar7"></div>
+                  <div className="bar8"></div>
+                  <div className="bar9"></div>
+                  <div className="bar10"></div>
+                  <div className="bar11"></div>
+                  <div className="bar12"></div>
+                </div>
+              ) : null}
             </button>
           </form>
         </div>

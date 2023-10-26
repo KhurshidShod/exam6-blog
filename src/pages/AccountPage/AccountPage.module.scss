@@ -7,28 +7,6 @@
     align-items: center;
     flex-direction: column;
     padding-top: 69px;
-    // .dragNdrop {
-    //   width: 100%;
-    //   max-width: 300px;
-    //   height: 300px;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   flex-direction: column;
-    //   border: 1px dashed rgba(109, 110, 118, 0.5);
-    //   border-radius: 25px;
-    //   position: relative;
-    //   border-radius: 50%;
-    //   padding: 1rem;
-    //   text-align: center;
-    //   img {
-    //     width: 100%;
-    //     height: 100%;
-    //     border-radius: 50%;
-    //     position: absolute;
-    //     object-fit: cover;
-    //   }
-    // }
     h1 {
       color: #232536;
       text-align: center;
@@ -36,7 +14,7 @@
       font-weight: 700;
       line-height: 64px;
       letter-spacing: -2px;
-      margin-bottom: 68px;
+      margin-bottom: 24px;
     }
     form {
       width: 768px;
@@ -80,9 +58,16 @@
         background-color: #ffd050;
         margin-bottom: 158px;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
         &.btnReadOnly {
           background-color: white;
           border: 1px solid rgba(109, 110, 118, 0.5);
+        }
+        &.btnLoading {
+          background-color: #ffd050a9 !important;
         }
       }
     }

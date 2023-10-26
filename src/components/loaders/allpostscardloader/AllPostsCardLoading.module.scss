@@ -1,0 +1,94 @@
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    90deg,
+    #e1e1e15c 0px,
+    #cccccc71 40px,
+    #e1e1e15c 80px
+  );
+  background-size: 300%;
+  background-position: 100% 0;
+  animation: shimmer 1s infinite;
+  &__img {
+    width: 300px;
+    flex-grow: 1;
+    height: 250px;
+    border-radius: 10px;
+    background-image: linear-gradient(
+        90deg,
+        #cccccca7 0px,
+        #ccccccde 40px,
+        #cccccca7 80px
+      );
+      background-size: 300%;
+      background-position: 100% 0;
+      animation: shimmer 1s infinite;
+  }
+  &__content{
+    width: calc(100% - 300px - 2rem);
+    flex-grow: 1;
+    min-width: 250px;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    &_first{
+        width: 225px;
+        height: 25px;
+        background-image: linear-gradient(
+            90deg,
+            #cccccca7 0px,
+            #ccccccde 40px,
+            #cccccca7 80px
+          );
+          background-size: 300%;
+          background-position: 100% 0;
+          animation: shimmer 1s infinite;
+          margin-top: .75rem;
+        border-radius: 10px;
+    }
+    &_second{
+        width: 65%;
+        height: 35px;
+        background-image: linear-gradient(
+            90deg,
+            #cccccca7 0px,
+            #ccccccde 40px,
+            #cccccca7 80px
+          );
+          background-size: 300%;
+          background-position: 100% 0;
+          animation: shimmer 1s infinite;
+          margin-top: 1rem;
+          margin-bottom: 2.5rem;
+        border-radius: 10px;
+    }
+    &_third{
+        width: 100%;
+        height: 100px;
+        background-image: linear-gradient(
+            90deg,
+            #cccccca7 0px,
+            #ccccccde 40px,
+            #cccccca7 80px
+          );
+          background-size: 300%;
+          background-position: 100% 0;
+          animation: shimmer 1s infinite;
+          margin-top: 1rem;
+        border-radius: 10px;
+    }
+  }
+}
+
+@keyframes shimmer {
+    to {
+      background-position: -100% 0;
+    }
+  }

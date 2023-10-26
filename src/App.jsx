@@ -14,6 +14,7 @@ import MyPostsPage from "./pages/MyPostsPage";
 import AccountPage from "./pages/AccountPage";
 import Layout from "./components/layout";
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
