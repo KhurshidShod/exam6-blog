@@ -18,7 +18,6 @@ const AccountPage = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       userData: {
@@ -107,7 +106,7 @@ const AccountPage = () => {
             Authorization: "Bearer " + Cookies.get("token"),
           },
         })
-        .then((res) => {
+        .then(() => {
           getUser();
           toast.success("Infos changed successfully!");
         })

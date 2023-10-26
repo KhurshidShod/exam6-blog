@@ -9,14 +9,13 @@ import AllPostsCardLoading from "../../components/loaders/allpostscardloader";
 
 const MyPostsPage = () => {
   const [myPosts, setMyPosts] = useState(null);
-  const [page, setPage] = useState(null);
   const [categories, setCategories] = useState(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { register, handleSubmit, setValue } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       postData: {
         title: "",
@@ -63,7 +62,6 @@ const MyPostsPage = () => {
     getPosts();
   };
 
-  const LIMIT = 5;
   const getCategories = () => {
     request
       .get("category")
@@ -92,7 +90,7 @@ const MyPostsPage = () => {
       .then((res) => setMyPosts(res.data.data))
       .catch((err) => console.log(err));
     setLoading(false);
-  }, [page, search, category]);
+  }, [search, category]);
   useEffect(() => {
     getPosts();
     getCategories();

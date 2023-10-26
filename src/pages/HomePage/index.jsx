@@ -10,7 +10,7 @@ import img from "../../assets/images/homehero.png";
 import { onImageError } from "../../utils/ImageErrorHandle";
 import HomeLoader from "../../components/loaders/homeloading";
 import PopularPostCardLoader from "../../components/loaders/loadingpopularpost";
-import CategoryCardLoading from "../../components/loaders/categoryLoading";
+import CategoryCardLoading from "../../components/loaders/categorycardloading";
 
 const HomePage = () => {
   const [popularBlogs, setPopularBlogs] = useState(null);

@@ -1,4 +1,4 @@
-import styles from './CategoryLoading.module.scss'
+import styles from './CategoryCardLoading.module.scss'
 
 const CategoryCardLoading = () => {
   return (
@@ -10,4 +10,4 @@ const CategoryCardLoading = () => {
   )
 }
 
-export default CategoryCardLoading
+export default CategoryCardLoading;
