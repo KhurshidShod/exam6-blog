@@ -89,12 +89,12 @@ const PostsPage = () => {
               <Fragment>
                 {posts?.map((post) => (
                   <PostCard
-                    key={post._id}
-                    category={post.category.name}
-                    title={post.title}
-                    description={post.description}
-                    image={post.photo._id}
-                    id={post._id}
+                    key={post?._id}
+                    category={post?.category.name}
+                    title={post?.title}
+                    description={post?.description}
+                    image={post?.photo?._id}
+                    id={post?._id}
                   />
                 ))}
               </Fragment>
